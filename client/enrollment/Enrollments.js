@@ -1,11 +1,11 @@
 
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
-import CompletedIcon from '@material-ui/icons/VerifiedUser'
-import InProgressIcon from '@material-ui/icons/DonutLarge'
+import { makeStyles } from '@mui/material/styles'
+import GridList from '@mui/material/GridList'
+import GridListTile from '@mui/material/GridListTile'
+import GridListTileBar from '@mui/material/GridListTileBar'
+import CompletedIcon from '@mui/icons-material/VerifiedUser'
+import InProgressIcon from '@mui/icons-material/DonutLarge'
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
