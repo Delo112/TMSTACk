@@ -1,11 +1,11 @@
 
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
-import CompletedIcon from '@material-ui/icons/VerifiedUser'
-import InProgressIcon from '@material-ui/icons/DonutLarge'
+import { makeStyles } from '@mui/styles'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
+import CompletedIcon from '@mui/icons-material/VerifiedUser'
+import InProgressIcon from '@mui/icons-material/DonutLarge'
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: '100%',
     paddingBottom: '14px'
   },
-  gridList: {
+  ImageList: {
     width: '100%',
     minHeight: 100,
     padding: '12px 0 10px'
@@ -53,20 +53,20 @@ export default function Enrollments(props){
   const classes = useStyles()
     return (
       <div>
-        <GridList cellHeight={120} className={classes.gridList} cols={4}>
+        <ImageList cellHeight={120} className={classes.ImageList} cols={4}>
           {props.enrollments.map((course, i) => (
-            <GridListTile key={i} className={classes.tile}>
+            <ImageListItem key={i} className={classes.tile}>
               <Link to={"/learn/"+course._id}><img className={classes.image} src={'/api/courses/photo/'+course.course._id} alt={course.course.name} /></Link>
-              <GridListTileBar className={classes.tileBar}
+              <ImageListItemBar className={classes.tileBar}
                 title={<Link to={"/learn/"+course._id} className={classes.tileTitle}>{course.course.name}</Link>}
                 actionIcon={<div className={classes.action}>
                  {course.completed ? (<CompletedIcon color="secondary"/>)
                  : (<InProgressIcon className={classes.progress} />)
                 }</div>}
               />
-            </GridListTile>
+            </ImageListItem>
           ))}
-        </GridList>
+        </ImageList>
     </div>
     )
 }
