@@ -1,9 +1,9 @@
 
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@mui/material/styles'
-import GridList from '@mui/material/GridList'
-import GridListTile from '@mui/material/GridListTile'
-import GridListTileBar from '@mui/material/GridListTileBar'
+import { makeStyles } from '@mui/styles'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
 import CompletedIcon from '@mui/icons-material/VerifiedUser'
 import InProgressIcon from '@mui/icons-material/DonutLarge'
 import {Link} from 'react-router-dom'

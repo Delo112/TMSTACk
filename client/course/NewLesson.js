@@ -8,7 +8,8 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import Add from '@mui/icons-material/AddBox'
-import {makeStyles} from '@mui/material/styles'
+import {makeStyles} from '@mui/styles'
+
 import {newLesson} from './api-course'
 import auth from './../auth/auth-helper'
 

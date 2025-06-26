@@ -9,7 +9,7 @@ import auth from './../auth/auth-helper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Icon from '@mui/material/Icon'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import {create} from './api-course.js'
 import {Link, Redirect} from 'react-router-dom'
 

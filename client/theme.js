@@ -1,5 +1,6 @@
 
-import { createMuiTheme } from '@mui/material/styles'
+import { createMuiTheme } from '@mui/styles'
+
 
 const theme = createMuiTheme({
     typography: {
