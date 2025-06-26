@@ -18,7 +18,7 @@ import ReactDOMServer from 'react-dom/server'
 import MainRouter from './../client/MainRouter'
 import { StaticRouter } from 'react-router-dom'
 
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
+import { ServerStyleSheets, ThemeProvider } from '@mui/styles'
 import theme from './../client/theme'
 //end
 
