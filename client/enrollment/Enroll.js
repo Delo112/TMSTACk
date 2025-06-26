@@ -2,12 +2,12 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import Button from '@mui/material/Button'
-import {makeStyles} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import {create} from './api-enrollment'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
     form: {
         minWidth: 500
     }

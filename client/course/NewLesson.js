@@ -8,11 +8,11 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import Add from '@mui/icons-material/AddBox'
-import {makeStyles} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import {newLesson} from './api-course'
 import auth from './../auth/auth-helper'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
     form: {
         minWidth: 500
     }

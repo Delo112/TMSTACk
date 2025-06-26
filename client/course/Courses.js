@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import GridList from '@mui/material/GridList'
 import GridListTile from '@mui/material/GridListTile'
 import GridListTileBar from '@mui/material/GridListTileBar'
@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
 import Enroll from './../enrollment/Enroll'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   title: {
     padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     color: theme.palette.openTitle

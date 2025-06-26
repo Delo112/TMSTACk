@@ -7,12 +7,12 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Icon from '@mui/material/Icon'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   card: {
     maxWidth: 600,
     margin: 'auto',

@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import {makeStyles} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
@@ -26,7 +26,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import { CardContent } from '@mui/material'
 
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
     root: theme.mixins.gutters({
         maxWidth: 800,
         margin: 'auto',

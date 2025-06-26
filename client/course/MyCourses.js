@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -16,7 +16,7 @@ import auth from './../auth/auth-helper'
 import {listByInstructor} from './api-course.js'
 import {Redirect, Link} from 'react-router-dom'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   root: theme.mixins.gutters({
     maxWidth: 600,
     margin: 'auto',

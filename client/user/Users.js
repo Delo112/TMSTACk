@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -14,7 +14,7 @@ import Person from '@mui/icons-material/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-user.js'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
     margin: theme.spacing(5),

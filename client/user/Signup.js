@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Icon from '@mui/material/Icon'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import {create} from './api-user.js'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -16,7 +16,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import {Link} from 'react-router-dom'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   card: {
     maxWidth: 600,
     margin: 'auto',

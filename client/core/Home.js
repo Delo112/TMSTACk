@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import Divider from '@mui/material/Divider'
 import {listPublished} from './../course/api-course'
@@ -10,7 +10,7 @@ import Courses from './../course/Courses'
 import Enrollments from '../enrollment/Enrollments'
 
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   card: {
     width:'90%',
     margin: 'auto',

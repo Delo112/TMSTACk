@@ -9,7 +9,7 @@ import Edit from '@mui/icons-material/Edit'
 import PeopleIcon from '@mui/icons-material/Group'
 import CompletedIcon from '@mui/icons-material/VerifiedUser'
 import Button from '@mui/material/Button'
-import {makeStyles} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
@@ -28,7 +28,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import Enroll from './../enrollment/Enroll'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
     root: theme.mixins.gutters({
         maxWidth: 800,
         margin: 'auto',

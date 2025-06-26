@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FileUpload from '@mui/icons-material/AddPhotoAlternate'
 import ArrowUp from '@mui/icons-material/ArrowUpward'
 import Button from '@mui/material/Button'
-import {makeStyles} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import TextField from '@mui/material/TextField'
@@ -22,7 +22,7 @@ import {Link, Redirect} from 'react-router-dom'
 import auth from './../auth/auth-helper'
 import Divider from '@mui/material/Divider'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
     root: theme.mixins.gutters({
         maxWidth: 800,
         margin: 'auto',

@@ -9,11 +9,11 @@ import auth from './../auth/auth-helper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Icon from '@mui/material/Icon'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import {create} from './api-course.js'
 import {Link, Redirect} from 'react-router-dom'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   card: {
     maxWidth: 600,
     margin: 'auto',

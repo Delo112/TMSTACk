@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import GridList from '@mui/material/GridList'
 import GridListTile from '@mui/material/GridListTile'
 import GridListTileBar from '@mui/material/GridListTileBar'
@@ -8,7 +8,7 @@ import CompletedIcon from '@mui/icons-material/VerifiedUser'
 import InProgressIcon from '@mui/icons-material/DonutLarge'
 import {Link} from 'react-router-dom'
 
-const useStyles = makeStyles(theme => ({
+const CustomDiv = styled('div')(({ theme }) => ({
   title: {
     padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
