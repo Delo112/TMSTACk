@@ -1,7 +1,7 @@
 
-import { createTheme } from '@mui/material/styles' 
+import { createMuiTheme } from '@material-ui/core/styles'
 
-const theme = createTheme({
+const theme = createMuiTheme({
     typography: {
       useNextVariants: true,
     },

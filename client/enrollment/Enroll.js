@@ -1,8 +1,8 @@
 
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
-import Button from '@mui/material/Button'
-import {makeStyles} from '@mui/styles'
+import Button from '@material-ui/core/Button'
+import {makeStyles} from '@material-ui/core/styles'
 import {create} from './api-enrollment'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
