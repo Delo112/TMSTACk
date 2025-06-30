@@ -1,4 +1,3 @@
-
 import Course from '../models/course.model'
 import extend from 'lodash/extend'
 import fs from 'fs'
@@ -16,15 +15,15 @@ const create = (req, res) => {
       })
     }
     let course = new Course(fields)
-    course.instructor= req.profile
-    if(files.image){
+    course.instructor = req.profile
+    if (files.image) {
       course.image.data = fs.readFileSync(files.image.path)
       course.image.contentType = files.image.type
     }
     try {
       let result = await course.save()
       res.json(result)
-    }catch (err){
+    } catch (err) {
       return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
       })
@@ -32,9 +31,6 @@ const create = (req, res) => {
   })
 }
 
-/**
- * Load course and append to req.
- */
 const courseByID = async (req, res, next, id) => {
   try {
     let course = await Course.findById(id).populate('instructor', '_id name')
@@ -78,11 +74,11 @@ const update = async (req, res) => {
     }
     let course = req.course
     course = extend(course, fields)
-    if(fields.lessons){
+    if (fields.lessons) {
       course.lessons = JSON.parse(fields.lessons)
     }
     course.updated = Date.now()
-    if(files.image){
+    if (files.image) {
       course.image.data = fs.readFileSync(files.image.path)
       course.image.contentType = files.image.type
     }
@@ -100,9 +96,13 @@ const update = async (req, res) => {
 const newLesson = async (req, res) => {
   try {
     let lesson = req.body.lesson
-    let result = await Course.findByIdAndUpdate(req.course._id, {$push: {lessons: lesson}, updated: Date.now()}, {new: true})
-                            .populate('instructor', '_id name')
-                            .exec()
+    let result = await Course.findByIdAndUpdate(
+      req.course._id,
+      { $push: { lessons: lesson }, updated: Date.now() },
+      { new: true }
+    )
+      .populate('instructor', '_id name')
+      .exec()
     res.json(result)
   } catch (err) {
     return res.status(400).json({
@@ -124,48 +124,50 @@ const remove = async (req, res) => {
 }
 
 const isInstructor = (req, res, next) => {
-    const isInstructor = req.course && req.auth && req.course.instructor._id == req.auth._id
-    if(!isInstructor){
-      return res.status('403').json({
-        error: "User is not authorized"
-      })
-    }
-    next()
+  const isInstructor = req.course && req.auth && req.course.instructor._id == req.auth._id
+  if (!isInstructor) {
+    return res.status('403').json({
+      error: "User is not authorized"
+    })
+  }
+  next()
 }
 
-const listByInstructor = (req, res) => {
-  Course.find({instructor: req.profile._id}, (err, courses) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
+const listByInstructor = async (req, res) => {
+  try {
+    const courses = await Course.find({ instructor: req.profile._id })
+      .populate('instructor', '_id name')
     res.json(courses)
-  }).populate('instructor', '_id name')
+  } catch (err) {
+    res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }
 
-const listPublished = (req, res) => {
-  Course.find({published: true}, (err, courses) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
+const listPublished = async (req, res) => {
+  try {
+    const courses = await Course.find({ published: true })
+      .populate('instructor', '_id name')
     res.json(courses)
-  }).populate('instructor', '_id name')
+  } catch (err) {
+    res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }
 
 const photo = (req, res, next) => {
-  if(req.course.image.data){
+  if (req.course.image.data) {
     res.set("Content-Type", req.course.image.contentType)
     return res.send(req.course.image.data)
   }
   next()
 }
-const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd()+defaultImage)
-}
 
+const defaultPhoto = (req, res) => {
+  return res.sendFile(process.cwd() + defaultImage)
+}
 
 export default {
   create,
