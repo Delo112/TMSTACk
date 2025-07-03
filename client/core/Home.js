@@ -70,20 +70,28 @@ export default function Home(){
   const jwt = auth.isAuthenticated()
   const [courses, setCourses] = useState([])
   const [enrolled, setEnrolled] = useState([])
-  useEffect(() => {
-    const abortController = new AbortController()
-    const signal = abortController.signal
-    listEnrolled({t: jwt.token}, signal).then((data) => {
+useEffect(() => {
+  const abortController = new AbortController()
+  const signal = abortController.signal
+
+  if (auth.isAuthenticated()) {
+    listEnrolled({t: auth.isAuthenticated().token}, signal).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
         setEnrolled(data)
       }
     })
-    return function cleanup(){
-      abortController.abort()
-    }
-  }, [])
+  } else {
+    // Jika tidak login, kosongkan enrollments
+    setEnrolled([])
+  }
+
+  return function cleanup(){
+    abortController.abort()
+  }
+}, [auth.isAuthenticated()])
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
