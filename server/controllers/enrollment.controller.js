@@ -30,13 +30,13 @@ const enrollmentByID = async (req, res, next, id) => {
                                     .populate({path: 'course', populate:{ path: 'instructor'}})
                                     .populate('student', '_id name')
     if (!enrollment)
-      return res.status('400').json({
+      return res.status(400).json({
         error: "Enrollment not found"
       })
     req.enrollment = enrollment
     next()
   } catch (err) {
-    return res.status('400').json({
+    return res.status(400).json({
       error: "Could not retrieve enrollment"
     })
   }
@@ -78,7 +78,7 @@ const remove = async (req, res) => {
 const isStudent = (req, res, next) => {
   const isStudent = req.auth && req.auth._id == req.enrollment.student._id
   if (!isStudent) {
-    return res.status('403').json({
+    return res.status(403).json({
       error: "User is not enrolled"
     })
   }

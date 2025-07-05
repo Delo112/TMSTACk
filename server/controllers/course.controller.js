@@ -35,13 +35,13 @@ const courseByID = async (req, res, next, id) => {
   try {
     let course = await Course.findById(id).populate('instructor', '_id name')
     if (!course)
-      return res.status('400').json({
+      return res.status(400).json({
         error: "Course not found"
       })
     req.course = course
     next()
   } catch (err) {
-    return res.status('400').json({
+    return res.status(400).json({
       error: "Could not retrieve course"
     })
   }
@@ -114,8 +114,20 @@ const newLesson = async (req, res) => {
 const remove = async (req, res) => {
   try {
     let course = req.course
-    let deleteCourse = await course.remove()
-    res.json(deleteCourse)
+
+    let deletedCourse = await Course.findByIdAndDelete(course._id)
+
+    if (!deletedCourse) {
+      return res.status(404).json({ error: "Course not found or already deleted" })
+    }
+
+    res.json({
+      message: "Course deleted successfully",
+      course: {
+        _id: deletedCourse._id,
+        name: deletedCourse.name
+      }
+    })
   } catch (err) {
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err)
@@ -123,15 +135,29 @@ const remove = async (req, res) => {
   }
 }
 
+
 const isInstructor = (req, res, next) => {
-  const isInstructor = req.course && req.auth && req.course.instructor._id == req.auth._id
-  if (!isInstructor) {
-    return res.status('403').json({
-      error: "User is not authorized"
+  // Pastikan data lengkap
+  const courseInstructor = req.course?.instructor?._id?.toString()
+  const userId = req.auth?._id?.toString()
+
+
+
+  if (!courseInstructor || !userId) {
+    return res.status(400).json({ error: "Missing instructor or authenticated user ID" })
+  }
+
+  if (courseInstructor !== userId) {
+    return res.status(403).json({
+      error: "User is not authorized to delete this course"
     })
   }
+
   next()
 }
+
+
+
 
 const listByInstructor = async (req, res) => {
   try {

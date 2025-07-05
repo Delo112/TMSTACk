@@ -24,13 +24,13 @@ const userByID = async (req, res, next, id) => {
   try {
     let user = await User.findById(id)
     if (!user)
-      return res.status('400').json({
+      return res.status(400).json({
         error: "User not found"
       })
     req.profile = user
     next()
   } catch (err) {
-    return res.status('400').json({
+    return res.status(400).json({
       error: "Could not retrieve user"
     })
   }
@@ -71,12 +71,22 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    let user = req.profile
-    let deletedUser = await user.remove()
+    const userId = req.profile._id
+    const deletedUser = await User.findByIdAndDelete(userId)
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" })
+    }
+
     deletedUser.hashed_password = undefined
     deletedUser.salt = undefined
-    res.json(deletedUser)
+
+    res.json({
+      message: "User deleted successfully",
+      user: deletedUser
+    })
   } catch (err) {
+    console.error("❌ Error deleting user:", err)
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err)
     })
@@ -86,7 +96,7 @@ const remove = async (req, res) => {
 const isEducator = (req, res, next) => {
   const isEducator = req.profile && req.profile.educator
   if (!isEducator) {
-    return res.status('403').json({
+    return res.status(403).json({
       error: "User is not an educator"
     })
   }
